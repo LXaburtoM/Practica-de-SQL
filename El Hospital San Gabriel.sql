@@ -255,3 +255,22 @@ Values
 (15, 5, Dateadd(day, 14, Getdate()), 'Esguince', 'Programada', 150.00);
 
 Go
+--MÓDULO VI: ACTUALIZACIÓN DE DATOS
+
+Update Pacientes Set Telefono = '999-888-777' Where PacienteID = 1;
+Update Pacientes Set Direccion = 'Avenida Siempre Viva 742' Where PacienteID = 2;
+Update Medicos Set Salario = 6500.00 Where MedicoID = 3;
+Update Medicos Set Turno = 'Tarde' Where MedicoID = 1;
+Update Citas Set Estado = 'Cancelada' Where CitaID = 5;
+Update Citas Set Costo_Consulta = 130.00 Where CitaID = 3;
+Update Especialidades Set NombreEspecialidad = 'Cardiología Avanzada' Where EspecialidadID = 1;
+Update Habitaciones Set Disponibilidad = 'No Disponible', Estado = 'En Mantenimiento' Where HabitacionID = 2;
+Update Tratamientos Set Estado = 'Finalizado' Where TratamientoID = 1;
+Update Medicamentos Set Stock = 150, Presentacion = 'Jarabe' Where MedicamentoID = 1;
+Update Pacientes Set Correo = 'nuevo.correo@mail.com' Where PacienteID = 4;
+Update Medicos Set Correo = 'dr.nuevo@hosp.com' Where MedicoID = 5;
+Update Citas Set FechaHoraCita = Dateadd(day, 1, FechaHoraCita) Where CitaID = 7;
+Update Medicos Set Experiencia = 16 Where MedicoID = 5;
+Update Pacientes Set Tipo_Sangre = 'O-' Where PacienteID = 10;
+Go
+

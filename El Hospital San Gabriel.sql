@@ -181,3 +181,77 @@ Drop Table If Exists MedicamentosPrueba;
 Drop Database If Exists DB_Pruebas;
 Go
 
+--MÓDULO V: INSERCIÓN DE DATOS--
+Alter Table Tratamientos Add Estado Varchar(20) Default 'Activo';
+Go
+-- 1. Insertar 5 especialidades
+Insert Into Especialidades (NombreEspecialidad) 
+Values ('Cardiología'), ('Pediatría'), ('Neurología'), ('Dermatología'), ('Traumatología');
+Go
+-- 2 y 9. Insertar 10 médicos especialistas
+Insert Into Medicos (Nombre, Apellido, EspecialidadID, Correo, Salario, Experiencia, Turno) 
+Values 
+('Juan', 'Perez', 1, 'j1@h.com', 5000, 10, 'Mañana'),
+('Ana', 'Gomez', 2, 'a2@h.com', 4500, 5, 'Tarde'),
+('Luis', 'Diaz', 3, 'l3@h.com', 6000, 12, 'Noche'),
+('Maria', 'Lopez', 4, 'm4@h.com', 4000, 8, 'Mañana'),
+('Carlos', 'Ruiz', 5, 'c5@h.com', 5500, 15, 'Mañana'),
+('Elena', 'Mora', 1, 'e6@h.com', 5200, 11, 'Tarde'),
+('Jorge', 'Vega', 2, 'j7@h.com', 4600, 6, 'Noche'),
+('Sofia', 'Rios', 3, 's8@h.com', 6100, 14, 'Mañana'),
+('Pablo', 'Luna', 4, 'p9@h.com', 4100, 9, 'Tarde'),
+('Lucia', 'Cruz', 5, 'l10@h.com', 5600, 16, 'Noche');
+Go
+-- 3 y 8. Insertar 20 pacientes (Con todos los campos)
+Insert Into Pacientes (Nombre, Apellido, FechaNacimiento, Telefono, Correo, Edad, FechaRegistro, Direccion, Tipo_Sangre)
+Values 
+('Pedro', 'Alvarez', '1990-01-01', '555-1', 'p1@m.com', 36, Getdate(), 'C1', 'O+'), ('Laura', 'Bustos', '1985-02-02', '555-2', 'p2@m.com', 41, Getdate(), 'C2', 'A+'),
+('Diego', 'Cortes', '2000-03-03', '555-3', 'p3@m.com', 26, Getdate(), 'C3', 'B-'), ('Rosa', 'Dominguez', '1970-04-04', '555-4', 'p4@m.com', 56, Getdate(), 'C4', 'O-'),
+('Raul', 'Esteban', '1995-05-05', '555-5', 'p5@m.com', 31, Getdate(), 'C5', 'AB+'), ('Carmen', 'Flores', '1988-06-06', '555-6', 'p6@m.com', 38, Getdate(), 'C6', 'A-'),
+('Hugo', 'Garcia', '1992-07-07', '555-7', 'p7@m.com', 34, Getdate(), 'C7', 'O+'), ('Irene', 'Herrera', '1981-08-08', '555-8', 'p8@m.com', 45, Getdate(), 'C8', 'B+'),
+('Mario', 'Iglesias', '1975-09-09', '555-9', 'p9@m.com', 51, Getdate(), 'C9', 'AB-'), ('Julia', 'Jimenez', '2002-10-10', '555-10', 'p10@m.com', 24, Getdate(), 'C10', 'O+'),
+('Andres', 'Krauss', '1999-11-11', '555-11', 'p11@m.com', 27, Getdate(), 'C11', 'A+'), ('Marta', 'Lara', '1983-12-12', '555-12', 'p12@m.com', 43, Getdate(), 'C12', 'O-'),
+('Oscar', 'Molina', '1991-01-13', '555-13', 'p13@m.com', 35, Getdate(), 'C13', 'B-'), ('Diana', 'Navarro', '1986-02-14', '555-14', 'p14@m.com', 40, Getdate(), 'C14', 'A-'),
+('Tito', 'Ochoa', '1978-03-15', '555-15', 'p15@m.com', 48, Getdate(), 'C15', 'AB+'), ('Sara', 'Paredes', '1994-04-16', '555-16', 'p16@m.com', 32, Getdate(), 'C16', 'O+'),
+('Rene', 'Quintero', '1989-05-17', '555-17', 'p17@m.com', 37, Getdate(), 'C17', 'B+'), ('Luz', 'Ramos', '1972-06-18', '555-18', 'p18@m.com', 54, Getdate(), 'C18', 'A+'),
+('Omar', 'Soto', '1996-07-19', '555-19', 'p19@m.com', 30, Getdate(), 'C19', 'O-'), ('Alba', 'Torres', '1984-08-20', '555-20', 'p20@m.com', 42, Getdate(), 'C20', 'AB-');
+Go
+-- 6, 14 y 15. Insertar 10 tratamientos (Activos y Finalizados)
+Insert Into Tratamientos (NombreTratamiento, Costo, PacienteID, Estado)
+Values 
+('Terapia Física', 150.00, 1, 'Activo'), ('Quimioterapia', 2000.00, 2, 'Activo'), ('Rehabilitación', 300.00, 3, 'Finalizado'),
+('Diálisis', 800.00, 4, 'Activo'), ('Cirugía Menor', 500.00, 5, 'Finalizado'), ('Tratamiento Dental', 120.00, 6, 'Activo'),
+('Radioterapia', 1500.00, 7, 'Activo'), ('Tratamiento Psicológico', 80.00, 8, 'Finalizado'),
+('Tratamiento Dermatológico', 90.00, 9, 'Activo'), ('Control Prenatal', 50.00, 10, 'Finalizado');
+Go
+-- 7. Insertar 20 medicamentos
+Insert Into Medicamentos (NombreMedicamento, Presentacion, Stock, TratamientoID)
+Values 
+('Paracetamol', 'Pastilla', 100, 1), ('Ibuprofeno', 'Pastilla', 50, 1), ('Amoxicilina', 'Cápsula', 200, 2), ('Azitromicina', 'Pastilla', 30, 2),
+('Omeprazol', 'Cápsula', 150, 3), ('Loratadina', 'Jarabe', 80, 3), ('Aspirina', 'Pastilla', 500, 4), ('Diclofenaco', 'Inyección', 40, 4),
+('Losartan', 'Pastilla', 300, 5), ('Enalapril', 'Pastilla', 250, 5), ('Metformina', 'Pastilla', 400, 6), ('Glibenclamida', 'Pastilla', 100, 6),
+('Clonazepam', 'Gotas', 20, 7), ('Diazepam', 'Pastilla', 15, 7), ('Salbutamol', 'Inhalador', 60, 8), ('Budesonida', 'Inhalador', 45, 8),
+('Insulina', 'Inyección', 90, 9), ('Ketorolaco', 'Pastilla', 110, 9), ('Ciprofloxacino', 'Pastilla', 70, 10), ('Ceftriaxona', 'Inyección', 25, 10);
+Go
+-- 5, 12 y 13. Insertar 10 habitaciones (Ocupadas y Disponibles)
+Insert Into Habitaciones (NumeroHabitacion, TipoHabitacion, Estado, Disponibilidad, PacienteID)
+Values 
+('101', 'Individual', 'Ocupada', 'No Disponible', 1), ('102', 'Doble', 'Disponible', 'Disponible', Null),
+('103', 'UCI', 'Ocupada', 'No Disponible', 2), ('104', 'Individual', 'Disponible', 'Disponible', Null),
+('105', 'Doble', 'Ocupada', 'No Disponible', 3), ('106', 'Pediatría', 'Disponible', 'Disponible', Null),
+('107', 'Individual', 'Ocupada', 'No Disponible', 4), ('108', 'Doble', 'Disponible', 'Disponible', Null),
+('109', 'Maternidad', 'Ocupada', 'No Disponible', 5), ('110', 'Individual', 'Disponible', 'Disponible', Null);
+Go
+-- 4, 10 y 11. Insertar 15 citas (Actuales y Futuras)
+Insert Into Citas (PacienteID, MedicoID, FechaHoraCita, Motivo, Estado, Costo_Consulta)
+Values 
+(1, 1, Getdate(), 'Dolor', 'Programada', 100.00), (2, 2, Getdate(), 'Control', 'Programada', 80.00),
+(3, 3, Dateadd(day, 5, Getdate()), 'Migraña', 'Programada', 120.00), (4, 4, Dateadd(day, 10, Getdate()), 'Alergia', 'Programada', 90.00),
+(5, 5, Dateadd(day, 2, Getdate()), 'Fractura', 'Programada', 150.00), (6, 6, Getdate(), 'Revisión', 'Completada', 100.00),
+(7, 7, Dateadd(day, 15, Getdate()), 'Vacunación', 'Programada', 80.00), (8, 8, Dateadd(day, 20, Getdate()), 'Neurología', 'Programada', 120.00),
+(9, 9, Dateadd(day, 3, Getdate()), 'Piel', 'Programada', 90.00), (10, 10, Dateadd(day, 7, Getdate()), 'Articulación', 'Programada', 150.00),
+(11, 1, Dateadd(day, 1, Getdate()), 'Corazón', 'Programada', 100.00), (12, 2, Dateadd(day, 4, Getdate()), 'Fiebre', 'Programada', 80.00),
+(13, 3, Dateadd(day, 8, Getdate()), 'Insomnio', 'Programada', 120.00), (14, 4, Dateadd(day, 12, Getdate()), 'Dermatitis', 'Programada', 90.00),
+(15, 5, Dateadd(day, 14, Getdate()), 'Esguince', 'Programada', 150.00);
+
+Go

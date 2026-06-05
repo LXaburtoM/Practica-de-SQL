@@ -150,3 +150,34 @@ Go
 Alter Table Habitaciones Add Disponibilidad Varchar(20);
 Go
 
+-- MÓDULO IV: ELIMINACIÓN DE OBJETOS
+-- 1. Eliminar una tabla temporal (En SQL Server usan el prefijo #)
+Drop Table If Exists #TablaTemporal;
+Go
+-- 2. Eliminar una restricción CHECK (La que creamos en el Módulo II)
+Alter Table Pacientes Drop Constraint CK_Pacientes_Edad;
+Go
+-- 3. Eliminar una restricción UNIQUE
+Alter Table Pacientes Drop Constraint UQ_Pacientes_Correo;
+Go
+-- 4. Eliminar una columna 
+Alter Table Pacientes Drop Column Genero;
+Go
+-- 5. Eliminar una tabla de pruebas
+Drop Table If Exists TablaPruebas;
+Go
+-- 6 y 7. Crear y eliminar tablas Auditoria y Logs
+Create Table Auditoria (ID Int);
+Drop Table Auditoria;
+Create Table Logs (ID Int);
+Drop Table Logs;
+Go
+-- 8. Eliminar una FOREIGN KEY
+Alter Table Citas Drop Constraint FK_Citas_Pacientes;
+Go
+-- 9 y 10. Eliminar tabla y base de datos de pruebas
+Drop Table If Exists MedicamentosPrueba;
+-- (Ten cuidado con este comando en la vida real)
+Drop Database If Exists DB_Pruebas;
+Go
+

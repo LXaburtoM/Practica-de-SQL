@@ -274,3 +274,58 @@ Update Medicos Set Experiencia = 16 Where MedicoID = 5;
 Update Pacientes Set Tipo_Sangre = 'O-' Where PacienteID = 10;
 Go
 
+-- MÓDULO VII: ELIMINACIÓN DE DATOS
+
+-- 1 y 2. Eliminar medicamento y cita directa
+Delete From Medicamentos Where MedicamentoID = 20;
+Delete From Citas Where CitaID = 15;
+Go
+-- 3. Eliminar una habitación
+Delete From Habitaciones Where HabitacionID = 10;
+Go
+-- 4. Eliminar un tratamiento (Requiere borrar primero sus medicamentos por la FK)
+Delete From Medicamentos Where TratamientoID = 9;
+Delete From Tratamientos Where TratamientoID = 9;
+Go
+-- 5. Eliminar un paciente específico (Requiere desvincularlo primero de sus FK)
+Delete From Citas Where PacienteID = 20;
+Update Habitaciones Set PacienteID = Null Where PacienteID = 20;
+Delete From Pacientes Where PacienteID = 20;
+Go
+-- 6 y 8. Eliminar por condiciones
+Delete From Citas Where Estado = 'Cancelada';
+Delete From Habitaciones Where Estado = 'Disponible';
+Go
+-- 7. Eliminar pacientes sin citas (Usando Subconsulta)
+Delete From Pacientes Where PacienteID Not In (Select Distinct PacienteID From Citas);
+Go
+-- 9 y 10. Eliminar medicamentos "vencidos" (Simulados por stock 0) y registros prueba
+Delete From Medicamentos Where Stock = 0;
+Delete From Pacientes Where Nombre = 'Prueba';
+
+--MÓDULO VIII: CONSULTAS BÁSICAS 
+
+-- 1 al 4. Mostrar tablas completas
+Select * From Pacientes;
+Select * From Medicos;
+Select * From Especialidades;
+Select * From Citas;
+Go
+-- 5 y 6. Ordenamientos (Order By)
+Select * From Pacientes Order By Apellido Asc;
+Select * From Medicos Order By Salario Desc;
+Go
+-- 7. Citas del día actual (Ignorando la hora)
+Select * From Citas Where Cast(FechaHoraCita As Date) = Cast(Getdate() As Date);
+Go
+-- 8. Mostrar habitaciones disponibles
+Select * From Habitaciones Where Disponibilidad = 'Disponible';
+Go
+-- 9. Mostrar cantidad de pacientes (Agregación)
+Select Count(*) As TotalPacientes From Pacientes;
+Go
+-- 10. Mostrar cantidad de citas por médico (Agrupación)
+Select MedicoID, Count(*) As TotalCitas 
+From Citas 
+Group By MedicoID;
+Go

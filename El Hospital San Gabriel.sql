@@ -295,3 +295,26 @@ Select MedicoID, Count(*) As TotalCitas
 From Citas 
 Group By MedicoID;
 Go
+
+-- MÓDULO VIII: CONSULTAS BÁSICAS (SELECT)
+
+Select * From Pacientes;
+Select * From Medicos;
+Select * From Especialidades;
+Select * From Citas;
+Go
+Select * From Pacientes    Order By Apellido Asc;
+Select * From Medicos      Order By Salario  Desc;
+Go
+Select * From Citas
+Where Cast(FechaHoraCita As Date) = Cast(Getdate() As Date);
+Go
+Select * From Habitaciones Where Disponibilidad = 'Disponible';
+Go
+Select Count(*) As TotalPacientes From Pacientes;
+Go
+Select   MedicoID, Count(*) As TotalCitas
+From     Citas
+Group By MedicoID
+Order By TotalCitas Desc;
+Go
